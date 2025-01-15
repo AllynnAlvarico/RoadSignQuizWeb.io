@@ -1,10 +1,9 @@
 let currentQuestionIndex = 0;
 let isBasicMode = true;
 let correctAnswer;  // Track the correct answer
-let score = 0;  // Initialize the score
+let score = 0;
 
 const path = '.\\resource\\images\\';
-
 
 const basicModeButton = document.getElementById('basic-mode');
 const advancedModeButton = document.getElementById('advanced-mode');
@@ -14,6 +13,8 @@ const optionsContainer = document.getElementById('options-container');
 const nextQuestionButton = document.getElementById('next-question');
 const quizHeading = document.getElementById('quiz-heading');
 const scoreElement = document.getElementById('score');
+const quizlengthElement = document.getElementById('quiz-length-container');
+const checkAnswerElement = document.getElementById('check-answer');
 
 const roadSigns = [
     { title: "Stop", imagePath: path + "Stop-300x300.png" },
@@ -44,7 +45,7 @@ const roadSigns = [
     { title: "Series of dangerous bends ahead", imagePath: path + "Series-of-dangerous-bends-ahead.webp" },
     { title: "Series of dangerous corners ahead", imagePath: path + "Series-of-dangerous-corners-ahead.webp" },
     { title: "Restricted headroom", imagePath: path + "Restricted-headroom.png" },
-    { title: "Side road", imagePath: path + "Side-road.png" },
+    { title: "Side road", imagePath: path + "Sideroad.png" },
     { title: "Y-junction", imagePath: path + "Y-junction-1.png" },
     { title: "Drive on left 2", imagePath: path + "Drive-on-left-2.png" },
     { title: "Safe height plate", imagePath: path + "Safe-height-plate.png" },
@@ -74,6 +75,73 @@ const roadSigns = [
     { title: "Cattle and farm animals", imagePath: path + "Cattle-and-farm-animals-300x300.png" },
     { title: "Accompanied horses and ponies", imagePath: path + "Accompanied-horses-and-ponies-300x300.png" },
     { title: "Crosswinds", imagePath: path + "Crosswinds.png" },
+    { title: "Steep descent ahead", imagePath: path + "Steep-descent-ahead-300x300.png" },
+    { title: "Steep ascent ahead", imagePath: path + "Steep-ascent-ahead-300x300.png" },
+    { title: "Danger of falling rocks", imagePath: path + "Danger-of-falling-rocks-300x300.png" },
+    { title: "Unprotected quay, canal or river", imagePath: path + "Unprotected-quay-canal-or-river.png" },
+    { title: "Level crossing ahead, guarded by gates or lifting barrier", imagePath: path + "Level-crossing-ahead-guarded-by-gates-or-lifting-barrier-300x300.png" },
+    { title: "Level crossing ahead, unguarded by gates or lifting barrier", imagePath: path + "Level-crossing-ahead-unguarded-by-gates-or-lifting-barrier-300x300.png" },
+    { title: "Level crossing ahead, guarded by gates or lifting barriers", imagePath: path + "Level-crossing-ahead-guarded-by-gates-or-lifting-barriers-300x300.png" },
+    { title: "Stop when lights are red", imagePath: path + "Stop-when-lights-are-red-1.png" },
+    { title: "Automatic level crossing ahead", imagePath: path + "Automatic-level-crossing-ahead-1.png" },
+    { title: "Chevron board (left)", imagePath: path + "Chevron-board-left.png" },
+    { title: "Chevron board (right)", imagePath: path + "Chevron-board-right-1.png" },
+    { title: "Tram lane crossing ahead", imagePath: path + "Tram-lane-crossing-ahead-300x300.png" },
+    { title: "Tram lane warning signs for pedestrians (look left)", imagePath: path + "Tram-lane-warning-signs-for-pedestrians-look-left-1.png" },
+    { title: "Tram lane warning signs for pedestrians (look both sides)", imagePath: path + "Tram-lane-warning-signs-for-pedestrians-look-both-sides-1.png" },
+    { title: "Tram lane warning signs for pedestrians (look right)", imagePath: path + "Tram-lane-warning-signs-for-pedestrians-look-right.png" },
+    { title: "Slippery for cyclists", imagePath: path + "Slippery-for-cyclists.png" },
+    { title: "School ahead", imagePath: path + "School-ahead-300x300.png" },
+    { title: "School children crossing ahead", imagePath: path + "School-children-crossing-ahead.png" },
+    { title: "Children crossing ahead (in residential areas)", imagePath: path + "Children-crossing-ahead.png" },
+    //======================================= Warning signs for road work =======================================
+    { title: "Road works ahead", imagePath: path + "Road-works-ahead-1-300x300.png" },
+    { title: "One-lane crossover (out)", imagePath: path + "One-lane-crossover-out.png" },
+    { title: "One-lane crossover (back)", imagePath: path + "Diamond_road_sign_one-lane_crossover_back.svg-300x300.png" },
+    { title: "Move to right (one lane)", imagePath: path + "Move-to-right-one-lane-1.png" },
+    { title: "Move to left (one lane)", imagePath: path + "Move-to-left-one-lane-1.png" },
+    { title: "Move to right (two lanes)", imagePath: path + "Move-to-left-two-lanes-3.png" },
+    { title: "Move to left (two lanes)", imagePath: path + "Move-to-right-two-lanes.png" },
+    { title: "Obstruction between lanes", imagePath: path + "Obstruction-between-lanes-1.png" },
+    { title: "End of obstruction between lanes", imagePath: path + "End-of-obstruction-between-lanes-2.png" },
+    { title: "Start of central reserve or obstruction", imagePath: path + "Startofcentralreserve.png" },
+    { title: "End of central reserve or obstruction", imagePath: path + "Endofobstructionbetweenlanes.png" },
+    { title: "Lanes diverge at crossover", imagePath: path + "Lanes-diverge-at-crossover.png" },
+    { title: "Lanes rejoin at crossover", imagePath: path + "Lanes-rejoin-at-crossover.png" },
+    { title: "Two-lanes crossover (back)", imagePath: path + "Two-lanes-crossover-back-150x150.png" },
+    { title: "Two-lanes crossover (out)", imagePath: path + "Two-lanes-crossover-out-1.png" },
+    { title: "Single-lane (for shuttle working)", imagePath: path + "Single-lane-for-shuttle-working.png" },
+    { title: "Two-way traffic", imagePath: path + "Two-way-traffic-1.png" },
+    { title: "Road narrows from left", imagePath: path + "Road-narrows-from-left.png" },
+    { title: "Road narrows from right", imagePath: path + "Road-narrows-from-right.png" },
+    { title: "Road narrows on both sides", imagePath: path + "Road-narrows-on-both-sides.png" },
+    { title: "Offside lane (of two) closed", imagePath: path + "Offside-lane-of-two-closed.png" },
+    { title: "Nearside lane (of two) closed", imagePath: path + "a_3yPcS-300x300.png" },
+    { title: "Offside lane (of three) closed", imagePath: path + "Offside-lane-of-three-closed.png" },
+    { title: "Nearside lane (of three) closed", imagePath: path + "as-300x300.png" },
+    { title: "Two offside lanes (of three) closed", imagePath: path + "Two-offside-lanes-of-three-closed.png" },
+    { title: "Two nearside lanes (of three) closed", imagePath: path + "Two-nearside-lanes-of-three-closed.-Two-alternative-styles.png" },
+    { title: "Offside lane (of four) closed", imagePath: path + "Offside-lane-of-four-closed-1.png" },
+    { title: "Nearside lane (of four) closed", imagePath: path + "WK046-300x300.png" },
+    { title: "Two offside lanes (of four) closed", imagePath: path + "Two-offside-lanes-of-four-closed-1.png" },
+    { title: "Two nearside lanes (of four) closed", imagePath: path + "Two-nearside-lanes-of-four-closed-1.png" },
+    { title: "Side road on left", imagePath: path + "Side-road-on-left-1.png" },
+    { title: "Side road on right", imagePath: path + "Side-road-on-right-2.png" },
+    { title: "Site access on left", imagePath: path + "Site-access-on-left-300x300.png" },
+    { title: "Site access on right", imagePath: path + "ssfdf-300x300.png" },
+    { title: "Temporary traffic signal ahead", imagePath: path + "Temporary-traffic-signal-ahead.png" },
+    { title: "Flagman ahead", imagePath: path + "Flagman-ahead-300x300.png" },
+    { title: "Slippery road", imagePath: path + "Slippery-road-300x300.png" },
+    { title: "Loose chippings", imagePath: path + "Loose-chippings.png" },
+    { title: "Queues likely", imagePath: path + "Queues-likely.png" },
+    { title: "Hump or ramp", imagePath: path + "Hump-or-ramp.png" },
+    { title: "", imagePath: path + ".png" },
+    { title: "", imagePath: path + ".png" },
+    { title: "", imagePath: path + ".png" },
+    { title: "", imagePath: path + ".png" },
+    { title: "", imagePath: path + ".png" },
+    { title: "", imagePath: path + ".png" },
+    { title: "", imagePath: path + ".png" },
     // will continue later
 
     { title: "No U-Turn", imagePath: path + "No-U-Turn-300x300.png" },
@@ -96,6 +164,7 @@ function displayQuestion() {
 
     correctAnswer = currentSign; // Track the correct answer
     quizHeading.textContent = `Question ${currentQuestionIndex + 1}`;
+    quizlengthElement.textContent = `Number of signs ${roadSigns.length}`;
 
     if (isBasicMode) {
         questionText.innerHTML = `<img src="${currentSign.imagePath}" alt="Road Sign" style="max-width: 300px; max-height: 300px; height: auto; width: auto;">`;
@@ -128,13 +197,16 @@ function displayQuestion() {
 }
 
 function handleAnswer(selectedOption, buttonClicked) {
+    // checkAnswerElement.textContent = 'Waiting';
     // Compare the selected option with the correct answer
     if (isBasicMode) {
         if (selectedOption.title === correctAnswer.title) {
             score++;
-            alert('Correct!');
+            // alert('Correct!');
+            checkAnswerElement.textContent = 'Correct';
         } else {
-            alert('Wrong answer, try again. You chose: ' + selectedOption.title);
+            // alert('Wrong answer, try again. You chose: ' + selectedOption.title);
+            checkAnswerElement.textContent = 'Incorrect';
         }
     } else {
         if (selectedOption.imagePath === correctAnswer.imagePath) {
