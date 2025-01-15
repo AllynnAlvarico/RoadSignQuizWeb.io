@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irish Road Signs Quiz</title>
+    <link type="text/css" rel="stylesheet" href="resource/css/index.css">
+</head>
+<body>
+<header>
+    <h1>Irish Road Signs Quiz</h1>
+</header>
+
+<main>
+    <section class="mode-select">
+        <button id="basic-mode">Basic Mode</button>
+        <button id="advanced-mode">Advanced Mode</button>
+    </section>
+
+    <section class="quiz-container" id="quiz-container">
+        <h2 id="quiz-heading">Question 1</h2>
+        <div class="question" id="question-text">What does this sign mean?</div>
+        <div class="options" id="options-container">
+            <!-- Options will be dynamically added here -->
+        </div>
+        <div class="quiz-footer">
+            <button id="next-question">Next Question</button>
+        </div>
+        <div id="score-container">
+            <p>Your Score: <span id="score">0</span></p>
+        </div>
+    </section>
+</main>
+</body>
+<script src="resource/js/main.js"></script>
+</html>
