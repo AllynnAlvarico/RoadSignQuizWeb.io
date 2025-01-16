@@ -9,10 +9,11 @@ Welcome to Road Sign Quiz Web, a project designed to help users prepare for thei
 
 # Motivation
 
-While searching for a website to help with driving test preparation, I realized there was a lack of accessible and interactive resources tailored for this purpose. To fill this gap, I decided to create my own platform that focuses on road sign education and quizzes.
-Road Sign Quiz Web is a project where I’m learning two things at the same time: road signs to prepare for driving tests and web development to further my programming skills. The signs on this site are based on National Driving School Ireland's Road Signs Guide. This platform is both an educational tool for users and a space for me to practice and grow as a web developer.
+Road Sign Quiz Web is a project where I’m learning two things at the same time: road signs to prepare for driving tests and web development to further my programming skills. The signs on this site are based on [National Driving School Ireland's Road Signs Guide](https://nationaldrivingschool.ie/road-signs-ireland/). 
 
-The road signs included on this site are based on reliable information from National Driving School Ireland's Road Signs Guide.
+While searching for a website to help with driving test preparation, I realized there was a lack of accessible and interactive resources tailored for this purpose. I also found it hard to stay engaged and remember each sign just by looking at static lists. This got me thinking, maybe if I built an interactive platform while practicing programming, I could absorb the information better and make the process more enjoyable.
+
+This platform is both an educational tool for users(like me) and a space for me to practice and grow as a web developer.
 
 # Features
 
@@ -26,10 +27,10 @@ The road signs included on this site are based on reliable information from Nati
 - CSS3
 - JavaScript
 - Frameworks and libraries (if any) will be added here as the project evolves.
-- Planned
-	- Angular
-	- Tailwind CSS
-	- TypeScript
+- Plan to implement in the future
+	- *Angular*
+	- *Tailwind CSS*
+	- *TypeScript*
 
 ## Development Status
 
