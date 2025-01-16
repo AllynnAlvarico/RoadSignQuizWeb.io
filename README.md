@@ -10,6 +10,7 @@ Welcome to Road Sign Quiz Web, a project designed to help users prepare for thei
 # Motivation
 
 While searching for a website to help with driving test preparation, I realized there was a lack of accessible and interactive resources tailored for this purpose. To fill this gap, I decided to create my own platform that focuses on road sign education and quizzes.
+Road Sign Quiz Web is a project where I’m learning two things at the same time: road signs to prepare for driving tests and web development to further my programming skills. The signs on this site are based on National Driving School Ireland's Road Signs Guide. This platform is both an educational tool for users and a space for me to practice and grow as a web developer.
 
 The road signs included on this site are based on reliable information from National Driving School Ireland's Road Signs Guide.
 
