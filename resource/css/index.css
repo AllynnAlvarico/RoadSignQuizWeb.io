@@ -97,6 +97,10 @@ h1, h2 {
 .quiz-footer button:hover {
     background-color: #218838;
 }
+a{
+    text-decoration: none;
+    color: white;
+}
 #check-answer {
     color: black;
     font-size: 20px;
